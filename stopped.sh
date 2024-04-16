@@ -5,7 +5,7 @@ start_time=$(date +%s)
 instance_names=$(aws lightsail get-instances | jq -r '.instances[] | select(.state.name == "stopped" or .state.name == "stopping") | .name')
 
 # For each instance in the list, start it using xargs
-echo "$instance_names" | xargs --no-run-if-empty -P 3 -I {} bash -c '
+echo "$instance_names" | xargs --no-run-if-empty -P 2 -I {} bash -c '
   instance="{}"
   echo "Starting instance: $instance"
   
